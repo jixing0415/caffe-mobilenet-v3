@@ -4,7 +4,7 @@ This is a personal Caffe implementation of MobileNetV3. For details, please read
 
 ### How to use
 1. Requirements for `Caffe` (see: [Caffe installation instructions](http://caffe.berkeleyvision.org/installation.html))
-2. Copy the Depthwise Convolutional Layer from [yonghenglh6/DepthwiseConvolution](https://github.com/yonghenglh6/DepthwiseConvolution), and rebuil the Caffe.
+2. Copy the Depthwise Convolutional Layer from [yonghenglh6/DepthwiseConvolution](https://github.com/yonghenglh6/DepthwiseConvolution) and rebuild the Caffe.
 3. Run test
 	```Shell
 	CPU:
