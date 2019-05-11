@@ -14,10 +14,10 @@ This is a personal Caffe implementation of MobileNetV3. For details, please read
 	```
 
 ### Performance on MobileNetV3
-| Backbone      | CPU-Forward | CPU-Backward | GPU-Forward | GPU-Backward |
-| ------------------- |:---------:| :---------:| :---------:| :---------:|
-| V3-Large 1.0        |   134.86 ms  |   152.11 ms   |  15.88 ms  |    22.15ms   |
-| ...                          |               |              |               |       .       |
+| Backbone            | CPU-Forward | CPU-Backward | GPU-Forward | GPU-Backward |
+| ------------------- |:---------:  | :---------:  | :---------: | :---------:  |
+| V3-Large 1.0        |  134.55 ms  |  140.23 ms   |  15.44 ms   |   21.79 ms   |
+| V3-Small 1.0        |  58.64  ms  |  59.30  ms   |  11.49 ms   |   12.58 ms   |
 
 
 ### TODO
