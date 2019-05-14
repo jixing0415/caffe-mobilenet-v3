@@ -621,7 +621,7 @@ layer {
     }
   }
 }
-# H-swish
+# H-sigmoid
 layer {
   name: "conv3-2/dwise-se-fc2/shift"
   type: "Power"
@@ -651,20 +651,10 @@ layer {
   }
 }
 layer {
-  name: "conv3-2/dwise-hard"
-  type: "Eltwise"
-  bottom: "conv3-2/dwise-se-fc2"
-  bottom: "conv3-2/dwise-se-fc2/shift"
-  top: "conv3-2/dwise-hard"
-  eltwise_param {
-    operation: PROD
-  }
-}
-layer {
   name: "conv3-2/dwise/scale"
   type: "Scale"
   bottom: "conv3-2/dwise"
-  bottom: "conv3-2/dwise-hard"
+  bottom: "conv3-2/dwise-se-fc2/shift"
   top: "conv3-2/dwise/scale"
   scale_param{
     axis: 0
@@ -860,7 +850,7 @@ layer {
     }
   }
 }
-# H-swish
+# H-sigmoid
 layer {
   name: "conv4-1/dwise-se-fc2/shift"
   type: "Power"
@@ -890,20 +880,10 @@ layer {
   }
 }
 layer {
-  name: "conv4-1/dwise-hard"
-  type: "Eltwise"
-  bottom: "conv4-1/dwise-se-fc2"
-  bottom: "conv4-1/dwise-se-fc2/shift"
-  top: "conv4-1/dwise-hard"
-  eltwise_param {
-    operation: PROD
-  }
-}
-layer {
   name: "conv4-1/dwise/scale"
   type: "Scale"
   bottom: "conv4-1/dwise"
-  bottom: "conv4-1/dwise-hard"
+  bottom: "conv4-1/dwise-se-fc2/shift"
   top: "conv4-1/dwise/scale"
   scale_param{
     axis: 0
@@ -1107,7 +1087,7 @@ layer {
     }
   }
 }
-# H-swish
+# H-sigmoid
 layer {
   name: "conv4-2/dwise-se-fc2/shift"
   type: "Power"
@@ -1137,20 +1117,10 @@ layer {
   }
 }
 layer {
-  name: "conv4-2/dwise-hard"
-  type: "Eltwise"
-  bottom: "conv4-2/dwise-se-fc2"
-  bottom: "conv4-2/dwise-se-fc2/shift"
-  top: "conv4-2/dwise-hard"
-  eltwise_param {
-    operation: PROD
-  }
-}
-layer {
   name: "conv4-2/dwise/scale"
   type: "Scale"
   bottom: "conv4-2/dwise"
-  bottom: "conv4-2/dwise-hard"
+  bottom: "conv4-2/dwise-se-fc2/shift"
   top: "conv4-2/dwise/scale"
   scale_param{
     axis: 0
@@ -2204,7 +2174,7 @@ layer {
     }
   }
 }
-# H-swish
+# H-sigmoid
 layer {
   name: "conv5-4/dwise-se-fc2/shift"
   type: "Power"
@@ -2234,20 +2204,10 @@ layer {
   }
 }
 layer {
-  name: "conv5-4/dwise-hard"
-  type: "Eltwise"
-  bottom: "conv5-4/dwise-se-fc2"
-  bottom: "conv5-4/dwise-se-fc2/shift"
-  top: "conv5-4/dwise-hard"
-  eltwise_param {
-    operation: PROD
-  }
-}
-layer {
   name: "conv5-4/dwise/scale"
   type: "Scale"
   bottom: "conv5-4/dwise/hswish"
-  bottom: "conv5-4/dwise-hard"
+  bottom: "conv5-4/dwise-se-fc2/shift"
   top: "conv5-4/dwise/scale"
   scale_param{
     axis: 0
@@ -2509,7 +2469,7 @@ layer {
     }
   }
 }
-# H-swish
+# H-sigmoid
 layer {
   name: "conv5-5/dwise-se-fc2/shift"
   type: "Power"
@@ -2539,20 +2499,10 @@ layer {
   }
 }
 layer {
-  name: "conv5-5/dwise-hard"
-  type: "Eltwise"
-  bottom: "conv5-5/dwise-se-fc2"
-  bottom: "conv5-5/dwise-se-fc2/shift"
-  top: "conv5-5/dwise-hard"
-  eltwise_param {
-    operation: PROD
-  }
-}
-layer {
   name: "conv5-5/dwise/scale"
   type: "Scale"
   bottom: "conv5-5/dwise/hswish"
-  bottom: "conv5-5/dwise-hard"
+  bottom: "conv5-5/dwise-se-fc2/shift"
   top: "conv5-5/dwise/scale"
   scale_param{
     axis: 0
@@ -2822,7 +2772,7 @@ layer {
     }
   }
 }
-# H-swish
+# H-sigmoid
 layer {
   name: "conv5-6/dwise-se-fc2/shift"
   type: "Power"
@@ -2852,20 +2802,10 @@ layer {
   }
 }
 layer {
-  name: "conv5-6/dwise-hard"
-  type: "Eltwise"
-  bottom: "conv5-6/dwise-se-fc2"
-  bottom: "conv5-6/dwise-se-fc2/shift"
-  top: "conv5-6/dwise-hard"
-  eltwise_param {
-    operation: PROD
-  }
-}
-layer {
   name: "conv5-6/dwise/scale"
   type: "Scale"
   bottom: "conv5-6/dwise/hswish"
-  bottom: "conv5-6/dwise-hard"
+  bottom: "conv5-6/dwise-se-fc2/shift"
   top: "conv5-6/dwise/scale"
   scale_param{
     axis: 0
@@ -3135,7 +3075,7 @@ layer {
     }
   }
 }
-# H-swish
+# H-sigmoid
 layer {
   name: "conv5-7/dwise-se-fc2/shift"
   type: "Power"
@@ -3165,20 +3105,10 @@ layer {
   }
 }
 layer {
-  name: "conv5-7/dwise-hard"
-  type: "Eltwise"
-  bottom: "conv5-7/dwise-se-fc2"
-  bottom: "conv5-7/dwise-se-fc2/shift"
-  top: "conv5-7/dwise-hard"
-  eltwise_param {
-    operation: PROD
-  }
-}
-layer {
   name: "conv5-7/dwise/scale"
   type: "Scale"
   bottom: "conv5-7/dwise/hswish"
-  bottom: "conv5-7/dwise-hard"
+  bottom: "conv5-7/dwise-se-fc2/shift"
   top: "conv5-7/dwise/scale"
   scale_param{
     axis: 0
@@ -3440,7 +3370,7 @@ layer {
     }
   }
 }
-# H-swish
+# H-sigmoid
 layer {
   name: "conv6-1/dwise-se-fc2/shift"
   type: "Power"
@@ -3470,20 +3400,10 @@ layer {
   }
 }
 layer {
-  name: "conv6-1/dwise-hard"
-  type: "Eltwise"
-  bottom: "conv6-1/dwise-se-fc2"
-  bottom: "conv6-1/dwise-se-fc2/shift"
-  top: "conv6-1/dwise-hard"
-  eltwise_param {
-    operation: PROD
-  }
-}
-layer {
   name: "conv6-1/dwise/scale"
   type: "Scale"
   bottom: "conv6-1/dwise/hswish"
-  bottom: "conv6-1/dwise-hard"
+  bottom: "conv6-1/dwise-se-fc2/shift"
   top: "conv6-1/dwise/scale"
   scale_param{
     axis: 0
