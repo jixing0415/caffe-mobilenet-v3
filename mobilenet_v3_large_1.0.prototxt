@@ -54,7 +54,7 @@ layer {
 }
 layer {
   name: "conv1/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv1/shift"
   top: "conv1/shift"
 }
@@ -118,7 +118,7 @@ layer {
 }
 layer {
   name: "conv2-1/expand-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv2-1/expand"
   top: "conv2-1/expand"
 }
@@ -163,7 +163,7 @@ layer {
 }
 layer {
   name: "conv2-1/dwise-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv2-1/dwise"
   top: "conv2-1/dwise"
 }
@@ -250,7 +250,7 @@ layer {
 }
 layer {
   name: "conv2-2/expand-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv2-2/expand"
   top: "conv2-2/expand"
 }
@@ -295,7 +295,7 @@ layer {
 }
 layer {
   name: "conv2-2/dwise-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv2-2/dwise"
   top: "conv2-2/dwise"
 }
@@ -374,7 +374,7 @@ layer {
 }
 layer {
   name: "conv3-1/expand-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv3-1/expand"
   top: "conv3-1/expand"
 }
@@ -419,7 +419,7 @@ layer {
 }
 layer {
   name: "conv3-1/dwise-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv3-1/dwise"
   top: "conv3-1/dwise"
 }
@@ -506,7 +506,7 @@ layer {
 }
 layer {
   name: "conv3-2/expand-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv3-2/expand"
   top: "conv3-2/expand"
 }
@@ -551,7 +551,7 @@ layer {
 }
 layer {
   name: "conv3-2/dwise-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv3-2/dwise"
   top: "conv3-2/dwise"
 }
@@ -593,7 +593,7 @@ layer {
 }
 layer {
   name: "conv3-2/dwise-se-fc1-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv3-2/dwise-se-fc1"
   top: "conv3-2/dwise-se-fc1"
 }
@@ -635,7 +635,7 @@ layer {
 }
 layer {
   name: "conv3-2/dwise-se-fc2/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv3-2/dwise-se-fc2/shift"
   top: "conv3-2/dwise-se-fc2/shift"
 }
@@ -735,7 +735,7 @@ layer {
 }
 layer {
   name: "conv4-1/expand-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv4-1/expand"
   top: "conv4-1/expand"
 }
@@ -780,7 +780,7 @@ layer {
 }
 layer {
   name: "conv4-1/dwise-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv4-1/dwise"
   top: "conv4-1/dwise"
 }
@@ -822,7 +822,7 @@ layer {
 }
 layer {
   name: "conv4-1/dwise-se-fc1-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv4-1/dwise-se-fc1"
   top: "conv4-1/dwise-se-fc1"
 }
@@ -864,7 +864,7 @@ layer {
 }
 layer {
   name: "conv4-1/dwise-se-fc2/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv4-1/dwise-se-fc2/shift"
   top: "conv4-1/dwise-se-fc2/shift"
 }
@@ -972,7 +972,7 @@ layer {
 }
 layer {
   name: "conv4-2/expand-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv4-2/expand"
   top: "conv4-2/expand"
 }
@@ -1017,7 +1017,7 @@ layer {
 }
 layer {
   name: "conv4-2/dwise-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv4-2/dwise"
   top: "conv4-2/dwise"
 }
@@ -1059,7 +1059,7 @@ layer {
 }
 layer {
   name: "conv4-2/dwise-se-fc1-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv4-2/dwise-se-fc1"
   top: "conv4-2/dwise-se-fc1"
 }
@@ -1101,7 +1101,7 @@ layer {
 }
 layer {
   name: "conv4-2/dwise-se-fc2/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv4-2/dwise-se-fc2/shift"
   top: "conv4-2/dwise-se-fc2/shift"
 }
@@ -1221,7 +1221,7 @@ layer {
 }
 layer {
   name: "conv4-3/expand/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv4-3/expand/shift"
   top: "conv4-3/expand/shift"
 }
@@ -1299,7 +1299,7 @@ layer {
 }
 layer {
   name: "conv4-3/dwise/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv4-3/dwise/shift"
   top: "conv4-3/dwise/shift"
 }
@@ -1411,7 +1411,7 @@ layer {
 }
 layer {
   name: "conv5-1/expand/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-1/expand/shift"
   top: "conv5-1/expand/shift"
 }
@@ -1489,7 +1489,7 @@ layer {
 }
 layer {
   name: "conv5-1/dwise/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-1/dwise/shift"
   top: "conv5-1/dwise/shift"
 }
@@ -1609,7 +1609,7 @@ layer {
 }
 layer {
   name: "conv5-2/expand/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-2/expand/shift"
   top: "conv5-2/expand/shift"
 }
@@ -1687,7 +1687,7 @@ layer {
 }
 layer {
   name: "conv5-2/dwise/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-2/dwise/shift"
   top: "conv5-2/dwise/shift"
 }
@@ -1807,7 +1807,7 @@ layer {
 }
 layer {
   name: "conv5-3/expand/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-3/expand/shift"
   top: "conv5-3/expand/shift"
 }
@@ -1885,7 +1885,7 @@ layer {
 }
 layer {
   name: "conv5-3/dwise/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-3/dwise/shift"
   top: "conv5-3/dwise/shift"
 }
@@ -2005,7 +2005,7 @@ layer {
 }
 layer {
   name: "conv5-4/expand/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-4/expand/shift"
   top: "conv5-4/expand/shift"
 }
@@ -2083,7 +2083,7 @@ layer {
 }
 layer {
   name: "conv5-4/dwise/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-4/dwise/shift"
   top: "conv5-4/dwise/shift"
 }
@@ -2146,7 +2146,7 @@ layer {
 }
 layer {
   name: "conv5-4/dwise-se-fc1-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-4/dwise-se-fc1"
   top: "conv5-4/dwise-se-fc1"
 }
@@ -2188,7 +2188,7 @@ layer {
 }
 layer {
   name: "conv5-4/dwise-se-fc2/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-4/dwise-se-fc2/shift"
   top: "conv5-4/dwise-se-fc2/shift"
 }
@@ -2300,7 +2300,7 @@ layer {
 }
 layer {
   name: "conv5-5/expand/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-5/expand/shift"
   top: "conv5-5/expand/shift"
 }
@@ -2378,7 +2378,7 @@ layer {
 }
 layer {
   name: "conv5-5/dwise/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-5/dwise/shift"
   top: "conv5-5/dwise/shift"
 }
@@ -2441,7 +2441,7 @@ layer {
 }
 layer {
   name: "conv5-5/dwise-se-fc1-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-5/dwise-se-fc1"
   top: "conv5-5/dwise-se-fc1"
 }
@@ -2483,7 +2483,7 @@ layer {
 }
 layer {
   name: "conv5-5/dwise-se-fc2/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-5/dwise-se-fc2/shift"
   top: "conv5-5/dwise-se-fc2/shift"
 }
@@ -2603,7 +2603,7 @@ layer {
 }
 layer {
   name: "conv5-6/expand/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-6/expand/shift"
   top: "conv5-6/expand/shift"
 }
@@ -2681,7 +2681,7 @@ layer {
 }
 layer {
   name: "conv5-6/dwise/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-6/dwise/shift"
   top: "conv5-6/dwise/shift"
 }
@@ -2744,7 +2744,7 @@ layer {
 }
 layer {
   name: "conv5-6/dwise-se-fc1-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-6/dwise-se-fc1"
   top: "conv5-6/dwise-se-fc1"
 }
@@ -2786,7 +2786,7 @@ layer {
 }
 layer {
   name: "conv5-6/dwise-se-fc2/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-6/dwise-se-fc2/shift"
   top: "conv5-6/dwise-se-fc2/shift"
 }
@@ -2906,7 +2906,7 @@ layer {
 }
 layer {
   name: "conv5-7/expand/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-7/expand/shift"
   top: "conv5-7/expand/shift"
 }
@@ -2984,7 +2984,7 @@ layer {
 }
 layer {
   name: "conv5-7/dwise/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-7/dwise/shift"
   top: "conv5-7/dwise/shift"
 }
@@ -3047,7 +3047,7 @@ layer {
 }
 layer {
   name: "conv5-7/dwise-se-fc1-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-7/dwise-se-fc1"
   top: "conv5-7/dwise-se-fc1"
 }
@@ -3089,7 +3089,7 @@ layer {
 }
 layer {
   name: "conv5-7/dwise-se-fc2/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv5-7/dwise-se-fc2/shift"
   top: "conv5-7/dwise-se-fc2/shift"
 }
@@ -3201,7 +3201,7 @@ layer {
 }
 layer {
   name: "conv6-1/expand/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv6-1/expand/shift"
   top: "conv6-1/expand/shift"
 }
@@ -3279,7 +3279,7 @@ layer {
 }
 layer {
   name: "conv6-1/dwise/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv6-1/dwise/shift"
   top: "conv6-1/dwise/shift"
 }
@@ -3342,7 +3342,7 @@ layer {
 }
 layer {
   name: "conv6-1/dwise-se-fc1-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv6-1/dwise-se-fc1"
   top: "conv6-1/dwise-se-fc1"
 }
@@ -3384,7 +3384,7 @@ layer {
 }
 layer {
   name: "conv6-1/dwise-se-fc2/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv6-1/dwise-se-fc2/shift"
   top: "conv6-1/dwise-se-fc2/shift"
 }
@@ -3504,7 +3504,7 @@ layer {
 }
 layer {
   name: "conv6-2/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv6-2/shift"
   top: "conv6-2/shift"
 }
@@ -3555,7 +3555,7 @@ layer {
 }
 layer {
   name: "pool7-1/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "pool7-1/shift"
   top: "pool7-1/shift"
 }
@@ -3616,7 +3616,7 @@ layer {
 }
 layer {
   name: "conv7-2/shift-relu"
-  type: "ReLU"
+  type: "ReLU6"
   bottom: "conv7-2/shift"
   top: "conv7-2/shift"
 }
