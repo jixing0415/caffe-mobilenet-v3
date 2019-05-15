@@ -62,7 +62,7 @@ layer {
   name: "conv1/shift-div"
   type: "Power"
   bottom: "conv1/shift"
-  top: "conv1/shift"
+  top: "conv1/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -73,7 +73,7 @@ layer {
   name: "conv1/hswish"
   type: "Eltwise"
   bottom: "conv1"
-  bottom: "conv1/shift"
+  bottom: "conv1/shift-div"
   top: "conv1/hswish"
   eltwise_param {
     operation: PROD
@@ -255,7 +255,7 @@ layer {
   name: "conv2-1/dwise-se-fc2/shift-div"
   type: "Power"
   bottom: "conv2-1/dwise-se-fc2/shift"
-  top: "conv2-1/dwise-se-fc2/shift"
+  top: "conv2-1/dwise-se-fc2/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -266,7 +266,7 @@ layer {
   name: "conv2-1/dwise/scale"
   type: "Scale"
   bottom: "conv2-1/dwise"
-  bottom: "conv2-1/dwise-se-fc2/shift"
+  bottom: "conv2-1/dwise-se-fc2/shift-div"
   top: "conv2-1/dwise/scale"
   scale_param{
     axis: 0
@@ -623,7 +623,7 @@ layer {
   name: "conv4-2/expand/shift-div"
   type: "Power"
   bottom: "conv4-2/expand/shift"
-  top: "conv4-2/expand/shift"
+  top: "conv4-2/expand/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -634,7 +634,7 @@ layer {
   name: "conv4-2/expand/hswish"
   type: "Eltwise"
   bottom: "conv4-2/expand"
-  bottom: "conv4-2/expand/shift"
+  bottom: "conv4-2/expand/shift-div"
   top: "conv4-2/expand/hswish"
   eltwise_param {
     operation: PROD
@@ -701,7 +701,7 @@ layer {
   name: "conv4-2/dwise/shift-div"
   type: "Power"
   bottom: "conv4-2/dwise/shift"
-  top: "conv4-2/dwise/shift"
+  top: "conv4-2/dwise/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -712,7 +712,7 @@ layer {
   name: "conv4-2/dwise/hswish"
   type: "Eltwise"
   bottom: "conv4-2/dwise"
-  bottom: "conv4-2/dwise/shift"
+  bottom: "conv4-2/dwise/shift-div"
   top: "conv4-2/dwise/hswish"
   eltwise_param {
     operation: PROD
@@ -806,7 +806,7 @@ layer {
   name: "conv4-2/dwise-se-fc2/shift-div"
   type: "Power"
   bottom: "conv4-2/dwise-se-fc2/shift"
-  top: "conv4-2/dwise-se-fc2/shift"
+  top: "conv4-2/dwise-se-fc2/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -817,7 +817,7 @@ layer {
   name: "conv4-2/dwise/scale"
   type: "Scale"
   bottom: "conv4-2/dwise/hswish"
-  bottom: "conv4-2/dwise-se-fc2/shift"
+  bottom: "conv4-2/dwise-se-fc2/shift-div"
   top: "conv4-2/dwise/scale"
   scale_param{
     axis: 0
@@ -918,7 +918,7 @@ layer {
   name: "conv5-1/expand/shift-div"
   type: "Power"
   bottom: "conv5-1/expand/shift"
-  top: "conv5-1/expand/shift"
+  top: "conv5-1/expand/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -929,7 +929,7 @@ layer {
   name: "conv5-1/expand/hswish"
   type: "Eltwise"
   bottom: "conv5-1/expand"
-  bottom: "conv5-1/expand/shift"
+  bottom: "conv5-1/expand/shift-div"
   top: "conv5-1/expand/hswish"
   eltwise_param {
     operation: PROD
@@ -996,7 +996,7 @@ layer {
   name: "conv5-1/dwise/shift-div"
   type: "Power"
   bottom: "conv5-1/dwise/shift"
-  top: "conv5-1/dwise/shift"
+  top: "conv5-1/dwise/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -1007,7 +1007,7 @@ layer {
   name: "conv5-1/dwise/hswish"
   type: "Eltwise"
   bottom: "conv5-1/dwise"
-  bottom: "conv5-1/dwise/shift"
+  bottom: "conv5-1/dwise/shift-div"
   top: "conv5-1/dwise/hswish"
   eltwise_param {
     operation: PROD
@@ -1101,7 +1101,7 @@ layer {
   name: "conv5-1/dwise-se-fc2/shift-div"
   type: "Power"
   bottom: "conv5-1/dwise-se-fc2/shift"
-  top: "conv5-1/dwise-se-fc2/shift"
+  top: "conv5-1/dwise-se-fc2/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -1112,7 +1112,7 @@ layer {
   name: "conv5-1/dwise/scale"
   type: "Scale"
   bottom: "conv5-1/dwise/hswish"
-  bottom: "conv5-1/dwise-se-fc2/shift"
+  bottom: "conv5-1/dwise-se-fc2/shift-div"
   top: "conv5-1/dwise/scale"
   scale_param{
     axis: 0
@@ -1221,7 +1221,7 @@ layer {
   name: "conv5-2/expand/shift-div"
   type: "Power"
   bottom: "conv5-2/expand/shift"
-  top: "conv5-2/expand/shift"
+  top: "conv5-2/expand/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -1232,7 +1232,7 @@ layer {
   name: "conv5-2/expand/hswish"
   type: "Eltwise"
   bottom: "conv5-2/expand"
-  bottom: "conv5-2/expand/shift"
+  bottom: "conv5-2/expand/shift-div"
   top: "conv5-2/expand/hswish"
   eltwise_param {
     operation: PROD
@@ -1299,7 +1299,7 @@ layer {
   name: "conv5-2/dwise/shift-div"
   type: "Power"
   bottom: "conv5-2/dwise/shift"
-  top: "conv5-2/dwise/shift"
+  top: "conv5-2/dwise/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -1310,7 +1310,7 @@ layer {
   name: "conv5-2/dwise/hswish"
   type: "Eltwise"
   bottom: "conv5-2/dwise"
-  bottom: "conv5-2/dwise/shift"
+  bottom: "conv5-2/dwise/shift-div"
   top: "conv5-2/dwise/hswish"
   eltwise_param {
     operation: PROD
@@ -1404,7 +1404,7 @@ layer {
   name: "conv5-2/dwise-se-fc2/shift-div"
   type: "Power"
   bottom: "conv5-2/dwise-se-fc2/shift"
-  top: "conv5-2/dwise-se-fc2/shift"
+  top: "conv5-2/dwise-se-fc2/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -1415,7 +1415,7 @@ layer {
   name: "conv5-2/dwise/scale"
   type: "Scale"
   bottom: "conv5-2/dwise/hswish"
-  bottom: "conv5-2/dwise-se-fc2/shift"
+  bottom: "conv5-2/dwise-se-fc2/shift-div"
   top: "conv5-2/dwise/scale"
   scale_param{
     axis: 0
@@ -1524,7 +1524,7 @@ layer {
   name: "conv5-3/expand/shift-div"
   type: "Power"
   bottom: "conv5-3/expand/shift"
-  top: "conv5-3/expand/shift"
+  top: "conv5-3/expand/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -1535,7 +1535,7 @@ layer {
   name: "conv5-3/expand/hswish"
   type: "Eltwise"
   bottom: "conv5-3/expand"
-  bottom: "conv5-3/expand/shift"
+  bottom: "conv5-3/expand/shift-div"
   top: "conv5-3/expand/hswish"
   eltwise_param {
     operation: PROD
@@ -1602,7 +1602,7 @@ layer {
   name: "conv5-3/dwise/shift-div"
   type: "Power"
   bottom: "conv5-3/dwise/shift"
-  top: "conv5-3/dwise/shift"
+  top: "conv5-3/dwise/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -1613,7 +1613,7 @@ layer {
   name: "conv5-3/dwise/hswish"
   type: "Eltwise"
   bottom: "conv5-3/dwise"
-  bottom: "conv5-3/dwise/shift"
+  bottom: "conv5-3/dwise/shift-div"
   top: "conv5-3/dwise/hswish"
   eltwise_param {
     operation: PROD
@@ -1707,7 +1707,7 @@ layer {
   name: "conv5-3/dwise-se-fc2/shift-div"
   type: "Power"
   bottom: "conv5-3/dwise-se-fc2/shift"
-  top: "conv5-3/dwise-se-fc2/shift"
+  top: "conv5-3/dwise-se-fc2/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -1718,7 +1718,7 @@ layer {
   name: "conv5-3/dwise/scale"
   type: "Scale"
   bottom: "conv5-3/dwise/hswish"
-  bottom: "conv5-3/dwise-se-fc2/shift"
+  bottom: "conv5-3/dwise-se-fc2/shift-div"
   top: "conv5-3/dwise/scale"
   scale_param{
     axis: 0
@@ -1819,7 +1819,7 @@ layer {
   name: "conv5-4/expand/shift-div"
   type: "Power"
   bottom: "conv5-4/expand/shift"
-  top: "conv5-4/expand/shift"
+  top: "conv5-4/expand/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -1830,7 +1830,7 @@ layer {
   name: "conv5-4/expand/hswish"
   type: "Eltwise"
   bottom: "conv5-4/expand"
-  bottom: "conv5-4/expand/shift"
+  bottom: "conv5-4/expand/shift-div"
   top: "conv5-4/expand/hswish"
   eltwise_param {
     operation: PROD
@@ -1897,7 +1897,7 @@ layer {
   name: "conv5-4/dwise/shift-div"
   type: "Power"
   bottom: "conv5-4/dwise/shift"
-  top: "conv5-4/dwise/shift"
+  top: "conv5-4/dwise/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -1908,7 +1908,7 @@ layer {
   name: "conv5-4/dwise/hswish"
   type: "Eltwise"
   bottom: "conv5-4/dwise"
-  bottom: "conv5-4/dwise/shift"
+  bottom: "conv5-4/dwise/shift-div"
   top: "conv5-4/dwise/hswish"
   eltwise_param {
     operation: PROD
@@ -2002,7 +2002,7 @@ layer {
   name: "conv5-4/dwise-se-fc2/shift-div"
   type: "Power"
   bottom: "conv5-4/dwise-se-fc2/shift"
-  top: "conv5-4/dwise-se-fc2/shift"
+  top: "conv5-4/dwise-se-fc2/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -2013,7 +2013,7 @@ layer {
   name: "conv5-4/dwise/scale"
   type: "Scale"
   bottom: "conv5-4/dwise/hswish"
-  bottom: "conv5-4/dwise-se-fc2/shift"
+  bottom: "conv5-4/dwise-se-fc2/shift-div"
   top: "conv5-4/dwise/scale"
   scale_param{
     axis: 0
@@ -2122,7 +2122,7 @@ layer {
   name: "conv5-5/expand/shift-div"
   type: "Power"
   bottom: "conv5-5/expand/shift"
-  top: "conv5-5/expand/shift"
+  top: "conv5-5/expand/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -2133,7 +2133,7 @@ layer {
   name: "conv5-5/expand/hswish"
   type: "Eltwise"
   bottom: "conv5-5/expand"
-  bottom: "conv5-5/expand/shift"
+  bottom: "conv5-5/expand/shift-div"
   top: "conv5-5/expand/hswish"
   eltwise_param {
     operation: PROD
@@ -2200,7 +2200,7 @@ layer {
   name: "conv5-5/dwise/shift-div"
   type: "Power"
   bottom: "conv5-5/dwise/shift"
-  top: "conv5-5/dwise/shift"
+  top: "conv5-5/dwise/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -2211,7 +2211,7 @@ layer {
   name: "conv5-5/dwise/hswish"
   type: "Eltwise"
   bottom: "conv5-5/dwise"
-  bottom: "conv5-5/dwise/shift"
+  bottom: "conv5-5/dwise/shift-div"
   top: "conv5-5/dwise/hswish"
   eltwise_param {
     operation: PROD
@@ -2305,7 +2305,7 @@ layer {
   name: "conv5-5/dwise-se-fc2/shift-div"
   type: "Power"
   bottom: "conv5-5/dwise-se-fc2/shift"
-  top: "conv5-5/dwise-se-fc2/shift"
+  top: "conv5-5/dwise-se-fc2/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -2316,7 +2316,7 @@ layer {
   name: "conv5-5/dwise/scale"
   type: "Scale"
   bottom: "conv5-5/dwise/hswish"
-  bottom: "conv5-5/dwise-se-fc2/shift"
+  bottom: "conv5-5/dwise-se-fc2/shift-div"
   top: "conv5-5/dwise/scale"
   scale_param{
     axis: 0
@@ -2417,7 +2417,7 @@ layer {
   name: "conv6-1/expand/shift-div"
   type: "Power"
   bottom: "conv6-1/expand/shift"
-  top: "conv6-1/expand/shift"
+  top: "conv6-1/expand/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -2428,7 +2428,7 @@ layer {
   name: "conv6-1/expand/hswish"
   type: "Eltwise"
   bottom: "conv6-1/expand"
-  bottom: "conv6-1/expand/shift"
+  bottom: "conv6-1/expand/shift-div"
   top: "conv6-1/expand/hswish"
   eltwise_param {
     operation: PROD
@@ -2495,7 +2495,7 @@ layer {
   name: "conv6-1/dwise/shift-div"
   type: "Power"
   bottom: "conv6-1/dwise/shift"
-  top: "conv6-1/dwise/shift"
+  top: "conv6-1/dwise/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -2506,7 +2506,7 @@ layer {
   name: "conv6-1/dwise/hswish"
   type: "Eltwise"
   bottom: "conv6-1/dwise"
-  bottom: "conv6-1/dwise/shift"
+  bottom: "conv6-1/dwise/shift-div"
   top: "conv6-1/dwise/hswish"
   eltwise_param {
     operation: PROD
@@ -2600,7 +2600,7 @@ layer {
   name: "conv6-1/dwise-se-fc2/shift-div"
   type: "Power"
   bottom: "conv6-1/dwise-se-fc2/shift"
-  top: "conv6-1/dwise-se-fc2/shift"
+  top: "conv6-1/dwise-se-fc2/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -2611,7 +2611,7 @@ layer {
   name: "conv6-1/dwise/scale"
   type: "Scale"
   bottom: "conv6-1/dwise/hswish"
-  bottom: "conv6-1/dwise-se-fc2/shift"
+  bottom: "conv6-1/dwise-se-fc2/shift-div"
   top: "conv6-1/dwise/scale"
   scale_param{
     axis: 0
@@ -2720,7 +2720,7 @@ layer {
   name: "conv6-2/expand/shift-div"
   type: "Power"
   bottom: "conv6-2/expand/shift"
-  top: "conv6-2/expand/shift"
+  top: "conv6-2/expand/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -2731,7 +2731,7 @@ layer {
   name: "conv6-2/expand/hswish"
   type: "Eltwise"
   bottom: "conv6-2/expand"
-  bottom: "conv6-2/expand/shift"
+  bottom: "conv6-2/expand/shift-div"
   top: "conv6-2/expand/hswish"
   eltwise_param {
     operation: PROD
@@ -2798,7 +2798,7 @@ layer {
   name: "conv6-2/dwise/shift-div"
   type: "Power"
   bottom: "conv6-2/dwise/shift"
-  top: "conv6-2/dwise/shift"
+  top: "conv6-2/dwise/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -2809,7 +2809,7 @@ layer {
   name: "conv6-2/dwise/hswish"
   type: "Eltwise"
   bottom: "conv6-2/dwise"
-  bottom: "conv6-2/dwise/shift"
+  bottom: "conv6-2/dwise/shift-div"
   top: "conv6-2/dwise/hswish"
   eltwise_param {
     operation: PROD
@@ -2903,7 +2903,7 @@ layer {
   name: "conv6-2/dwise-se-fc2/shift-div"
   type: "Power"
   bottom: "conv6-2/dwise-se-fc2/shift"
-  top: "conv6-2/dwise-se-fc2/shift"
+  top: "conv6-2/dwise-se-fc2/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -2914,7 +2914,7 @@ layer {
   name: "conv6-2/dwise/scale"
   type: "Scale"
   bottom: "conv6-2/dwise/hswish"
-  bottom: "conv6-2/dwise-se-fc2/shift"
+  bottom: "conv6-2/dwise-se-fc2/shift-div"
   top: "conv6-2/dwise/scale"
   scale_param{
     axis: 0
@@ -3023,7 +3023,7 @@ layer {
   name: "conv6-3/shift-div"
   type: "Power"
   bottom: "conv6-3/shift"
-  top: "conv6-3/shift"
+  top: "conv6-3/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -3034,7 +3034,7 @@ layer {
   name: "conv6-3/hswish"
   type: "Eltwise"
   bottom: "conv6-3"
-  bottom: "conv6-3/shift"
+  bottom: "conv6-3/shift-div"
   top: "conv6-3/hswish"
   eltwise_param {
     operation: PROD
@@ -3128,7 +3128,7 @@ layer {
   name: "conv6-3-se-fc2/shift-div"
   type: "Power"
   bottom: "conv6-3-se-fc2/shift"
-  top: "conv6-3-se-fc2/shift"
+  top: "conv6-3-se-fc2/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -3139,7 +3139,7 @@ layer {
   name: "conv6-3/scale"
   type: "Scale"
   bottom: "conv6-3/hswish"
-  bottom: "conv6-3-se-fc2/shift"
+  bottom: "conv6-3-se-fc2/shift-div"
   top: "conv6-3/scale"
   scale_param{
     axis: 0
@@ -3179,7 +3179,7 @@ layer {
   name: "pool7-1/shift-div"
   type: "Power"
   bottom: "pool7-1/shift"
-  top: "pool7-1/shift"
+  top: "pool7-1/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -3190,7 +3190,7 @@ layer {
   name: "pool7-1/hswish"
   type: "Eltwise"
   bottom: "pool7-1"
-  bottom: "pool7-1/shift"
+  bottom: "pool7-1/shift-div"
   top: "pool7-1/hswish"
   eltwise_param {
     operation: PROD
@@ -3255,7 +3255,7 @@ layer {
   name: "conv7-2/shift-div"
   type: "Power"
   bottom: "conv7-2/shift"
-  top: "conv7-2/shift"
+  top: "conv7-2/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -3266,7 +3266,7 @@ layer {
   name: "conv7-2/hswish"
   type: "Eltwise"
   bottom: "conv7-2"
-  bottom: "conv7-2/shift"
+  bottom: "conv7-2/shift-div"
   top: "conv7-2/hswish"
   eltwise_param {
     operation: PROD
@@ -3331,7 +3331,7 @@ layer {
   name: "conv7-3/shift-div"
   type: "Power"
   bottom: "conv7-3/shift"
-  top: "conv7-3/shift"
+  top: "conv7-3/shift-div"
   power_param {
     power: 1
     scale: 0.1666666667
@@ -3342,7 +3342,7 @@ layer {
   name: "conv7-3/hswish"
   type: "Eltwise"
   bottom: "conv7-3"
-  bottom: "conv7-3/shift"
+  bottom: "conv7-3/shift-div"
   top: "conv7-3/hswish"
   eltwise_param {
     operation: PROD
