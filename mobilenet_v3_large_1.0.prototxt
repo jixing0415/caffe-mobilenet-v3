@@ -3653,7 +3653,7 @@ layer {
     decay_mult: 1
   }
   convolution_param {
-    num_output: 10
+    num_output: 1000
     pad: 0
     bias_term: false
     kernel_size: 1
