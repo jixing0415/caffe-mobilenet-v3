@@ -161,12 +161,6 @@ layer {
     bias_term: true
   }
 }
-layer {
-  name: "conv2-1/dwise-relu"
-  type: "ReLU6"
-  bottom: "conv2-1/dwise"
-  top: "conv2-1/dwise"
-}
 
 # se
 layer {
@@ -271,6 +265,12 @@ layer {
   scale_param{
     axis: 0
   }
+}
+layer {
+  name: "conv2-1/dwise/scale-relu"
+  type: "ReLU6"
+  bottom: "conv2-1/dwise/scale"
+  top: "conv2-1/dwise/scale"
 }
 
 layer {
@@ -679,51 +679,12 @@ layer {
     bias_term: true
   }
 }
-# H-swish
-layer {
-  name: "conv4-2/dwise/shift"
-  type: "Power"
-  bottom: "conv4-2/dwise"
-  top: "conv4-2/dwise/shift"
-  power_param {
-    power: 1
-    scale: 1
-    shift: 3
-  }
-}
-layer {
-  name: "conv4-2/dwise/shift-relu"
-  type: "ReLU6"
-  bottom: "conv4-2/dwise/shift"
-  top: "conv4-2/dwise/shift"
-}
-layer {
-  name: "conv4-2/dwise/shift-div"
-  type: "Power"
-  bottom: "conv4-2/dwise/shift"
-  top: "conv4-2/dwise/shift-div"
-  power_param {
-    power: 1
-    scale: 0.1666666667
-    shift: 0
-  }
-}
-layer {
-  name: "conv4-2/dwise/hswish"
-  type: "Eltwise"
-  bottom: "conv4-2/dwise"
-  bottom: "conv4-2/dwise/shift-div"
-  top: "conv4-2/dwise/hswish"
-  eltwise_param {
-    operation: PROD
-  }
-}
 
 # se
 layer {
   name: "conv4-2/dwise-se-pool"
   type: "Pooling"
-  bottom: "conv4-2/dwise/hswish"
+  bottom: "conv4-2/dwise"
   top: "conv4-2/dwise-se-pool"
   pooling_param {
     pool: AVE
@@ -816,18 +777,57 @@ layer {
 layer {
   name: "conv4-2/dwise/scale"
   type: "Scale"
-  bottom: "conv4-2/dwise/hswish"
+  bottom: "conv4-2/dwise"
   bottom: "conv4-2/dwise-se-fc2/shift-div"
   top: "conv4-2/dwise/scale"
   scale_param{
     axis: 0
   }
 }
+# H-swish
+layer {
+  name: "conv4-2/dwise/shift"
+  type: "Power"
+  bottom: "conv4-2/dwise/scale"
+  top: "conv4-2/dwise/shift"
+  power_param {
+    power: 1
+    scale: 1
+    shift: 3
+  }
+}
+layer {
+  name: "conv4-2/dwise/shift-relu"
+  type: "ReLU6"
+  bottom: "conv4-2/dwise/shift"
+  top: "conv4-2/dwise/shift"
+}
+layer {
+  name: "conv4-2/dwise/shift-div"
+  type: "Power"
+  bottom: "conv4-2/dwise/shift"
+  top: "conv4-2/dwise/shift-div"
+  power_param {
+    power: 1
+    scale: 0.1666666667
+    shift: 0
+  }
+}
+layer {
+  name: "conv4-2/dwise/hswish"
+  type: "Eltwise"
+  bottom: "conv4-2/dwise/scale"
+  bottom: "conv4-2/dwise/shift-div"
+  top: "conv4-2/dwise/hswish"
+  eltwise_param {
+    operation: PROD
+  }
+}
 
 layer {
   name: "conv4-2/linear"
   type: "Convolution"
-  bottom: "conv4-2/dwise/scale"
+  bottom: "conv4-2/dwise/hswish"
   top: "conv4-2/linear"
   param {
     lr_mult: 1
@@ -974,51 +974,12 @@ layer {
     bias_term: true
   }
 }
-# H-swish
-layer {
-  name: "conv5-1/dwise/shift"
-  type: "Power"
-  bottom: "conv5-1/dwise"
-  top: "conv5-1/dwise/shift"
-  power_param {
-    power: 1
-    scale: 1
-    shift: 3
-  }
-}
-layer {
-  name: "conv5-1/dwise/shift-relu"
-  type: "ReLU6"
-  bottom: "conv5-1/dwise/shift"
-  top: "conv5-1/dwise/shift"
-}
-layer {
-  name: "conv5-1/dwise/shift-div"
-  type: "Power"
-  bottom: "conv5-1/dwise/shift"
-  top: "conv5-1/dwise/shift-div"
-  power_param {
-    power: 1
-    scale: 0.1666666667
-    shift: 0
-  }
-}
-layer {
-  name: "conv5-1/dwise/hswish"
-  type: "Eltwise"
-  bottom: "conv5-1/dwise"
-  bottom: "conv5-1/dwise/shift-div"
-  top: "conv5-1/dwise/hswish"
-  eltwise_param {
-    operation: PROD
-  }
-}
 
 # se
 layer {
   name: "conv5-1/dwise-se-pool"
   type: "Pooling"
-  bottom: "conv5-1/dwise/hswish"
+  bottom: "conv5-1/dwise"
   top: "conv5-1/dwise-se-pool"
   pooling_param {
     pool: AVE
@@ -1111,18 +1072,57 @@ layer {
 layer {
   name: "conv5-1/dwise/scale"
   type: "Scale"
-  bottom: "conv5-1/dwise/hswish"
+  bottom: "conv5-1/dwise"
   bottom: "conv5-1/dwise-se-fc2/shift-div"
   top: "conv5-1/dwise/scale"
   scale_param{
     axis: 0
   }
 }
+# H-swish
+layer {
+  name: "conv5-1/dwise/shift"
+  type: "Power"
+  bottom: "conv5-1/dwise/scale"
+  top: "conv5-1/dwise/shift"
+  power_param {
+    power: 1
+    scale: 1
+    shift: 3
+  }
+}
+layer {
+  name: "conv5-1/dwise/shift-relu"
+  type: "ReLU6"
+  bottom: "conv5-1/dwise/shift"
+  top: "conv5-1/dwise/shift"
+}
+layer {
+  name: "conv5-1/dwise/shift-div"
+  type: "Power"
+  bottom: "conv5-1/dwise/shift"
+  top: "conv5-1/dwise/shift-div"
+  power_param {
+    power: 1
+    scale: 0.1666666667
+    shift: 0
+  }
+}
+layer {
+  name: "conv5-1/dwise/hswish"
+  type: "Eltwise"
+  bottom: "conv5-1/dwise/scale"
+  bottom: "conv5-1/dwise/shift-div"
+  top: "conv5-1/dwise/hswish"
+  eltwise_param {
+    operation: PROD
+  }
+}
 
 layer {
   name: "conv5-1/linear"
   type: "Convolution"
-  bottom: "conv5-1/dwise/scale"
+  bottom: "conv5-1/dwise/hswish"
   top: "conv5-1/linear"
   param {
     lr_mult: 1
@@ -1277,51 +1277,12 @@ layer {
     bias_term: true
   }
 }
-# H-swish
-layer {
-  name: "conv5-2/dwise/shift"
-  type: "Power"
-  bottom: "conv5-2/dwise"
-  top: "conv5-2/dwise/shift"
-  power_param {
-    power: 1
-    scale: 1
-    shift: 3
-  }
-}
-layer {
-  name: "conv5-2/dwise/shift-relu"
-  type: "ReLU6"
-  bottom: "conv5-2/dwise/shift"
-  top: "conv5-2/dwise/shift"
-}
-layer {
-  name: "conv5-2/dwise/shift-div"
-  type: "Power"
-  bottom: "conv5-2/dwise/shift"
-  top: "conv5-2/dwise/shift-div"
-  power_param {
-    power: 1
-    scale: 0.1666666667
-    shift: 0
-  }
-}
-layer {
-  name: "conv5-2/dwise/hswish"
-  type: "Eltwise"
-  bottom: "conv5-2/dwise"
-  bottom: "conv5-2/dwise/shift-div"
-  top: "conv5-2/dwise/hswish"
-  eltwise_param {
-    operation: PROD
-  }
-}
 
 # se
 layer {
   name: "conv5-2/dwise-se-pool"
   type: "Pooling"
-  bottom: "conv5-2/dwise/hswish"
+  bottom: "conv5-2/dwise"
   top: "conv5-2/dwise-se-pool"
   pooling_param {
     pool: AVE
@@ -1414,18 +1375,57 @@ layer {
 layer {
   name: "conv5-2/dwise/scale"
   type: "Scale"
-  bottom: "conv5-2/dwise/hswish"
+  bottom: "conv5-2/dwise"
   bottom: "conv5-2/dwise-se-fc2/shift-div"
   top: "conv5-2/dwise/scale"
   scale_param{
     axis: 0
   }
 }
+# H-swish
+layer {
+  name: "conv5-2/dwise/shift"
+  type: "Power"
+  bottom: "conv5-2/dwise/scale"
+  top: "conv5-2/dwise/shift"
+  power_param {
+    power: 1
+    scale: 1
+    shift: 3
+  }
+}
+layer {
+  name: "conv5-2/dwise/shift-relu"
+  type: "ReLU6"
+  bottom: "conv5-2/dwise/shift"
+  top: "conv5-2/dwise/shift"
+}
+layer {
+  name: "conv5-2/dwise/shift-div"
+  type: "Power"
+  bottom: "conv5-2/dwise/shift"
+  top: "conv5-2/dwise/shift-div"
+  power_param {
+    power: 1
+    scale: 0.1666666667
+    shift: 0
+  }
+}
+layer {
+  name: "conv5-2/dwise/hswish"
+  type: "Eltwise"
+  bottom: "conv5-2/dwise/scale"
+  bottom: "conv5-2/dwise/shift-div"
+  top: "conv5-2/dwise/hswish"
+  eltwise_param {
+    operation: PROD
+  }
+}
 
 layer {
   name: "conv5-2/linear"
   type: "Convolution"
-  bottom: "conv5-2/dwise/scale"
+  bottom: "conv5-2/dwise/hswish"
   top: "conv5-2/linear"
   param {
     lr_mult: 1
@@ -1580,51 +1580,12 @@ layer {
     bias_term: true
   }
 }
-# H-swish
-layer {
-  name: "conv5-3/dwise/shift"
-  type: "Power"
-  bottom: "conv5-3/dwise"
-  top: "conv5-3/dwise/shift"
-  power_param {
-    power: 1
-    scale: 1
-    shift: 3
-  }
-}
-layer {
-  name: "conv5-3/dwise/shift-relu"
-  type: "ReLU6"
-  bottom: "conv5-3/dwise/shift"
-  top: "conv5-3/dwise/shift"
-}
-layer {
-  name: "conv5-3/dwise/shift-div"
-  type: "Power"
-  bottom: "conv5-3/dwise/shift"
-  top: "conv5-3/dwise/shift-div"
-  power_param {
-    power: 1
-    scale: 0.1666666667
-    shift: 0
-  }
-}
-layer {
-  name: "conv5-3/dwise/hswish"
-  type: "Eltwise"
-  bottom: "conv5-3/dwise"
-  bottom: "conv5-3/dwise/shift-div"
-  top: "conv5-3/dwise/hswish"
-  eltwise_param {
-    operation: PROD
-  }
-}
 
 # se
 layer {
   name: "conv5-3/dwise-se-pool"
   type: "Pooling"
-  bottom: "conv5-3/dwise/hswish"
+  bottom: "conv5-3/dwise"
   top: "conv5-3/dwise-se-pool"
   pooling_param {
     pool: AVE
@@ -1717,18 +1678,57 @@ layer {
 layer {
   name: "conv5-3/dwise/scale"
   type: "Scale"
-  bottom: "conv5-3/dwise/hswish"
+  bottom: "conv5-3/dwise"
   bottom: "conv5-3/dwise-se-fc2/shift-div"
   top: "conv5-3/dwise/scale"
   scale_param{
     axis: 0
   }
 }
+# H-swish
+layer {
+  name: "conv5-3/dwise/shift"
+  type: "Power"
+  bottom: "conv5-3/dwise/scale"
+  top: "conv5-3/dwise/shift"
+  power_param {
+    power: 1
+    scale: 1
+    shift: 3
+  }
+}
+layer {
+  name: "conv5-3/dwise/shift-relu"
+  type: "ReLU6"
+  bottom: "conv5-3/dwise/shift"
+  top: "conv5-3/dwise/shift"
+}
+layer {
+  name: "conv5-3/dwise/shift-div"
+  type: "Power"
+  bottom: "conv5-3/dwise/shift"
+  top: "conv5-3/dwise/shift-div"
+  power_param {
+    power: 1
+    scale: 0.1666666667
+    shift: 0
+  }
+}
+layer {
+  name: "conv5-3/dwise/hswish"
+  type: "Eltwise"
+  bottom: "conv5-3/dwise/scale"
+  bottom: "conv5-3/dwise/shift-div"
+  top: "conv5-3/dwise/hswish"
+  eltwise_param {
+    operation: PROD
+  }
+}
 
 layer {
   name: "conv5-3/linear"
   type: "Convolution"
-  bottom: "conv5-3/dwise/scale"
+  bottom: "conv5-3/dwise/hswish"
   top: "conv5-3/linear"
   param {
     lr_mult: 1
@@ -1875,51 +1875,12 @@ layer {
     bias_term: true
   }
 }
-# H-swish
-layer {
-  name: "conv5-4/dwise/shift"
-  type: "Power"
-  bottom: "conv5-4/dwise"
-  top: "conv5-4/dwise/shift"
-  power_param {
-    power: 1
-    scale: 1
-    shift: 3
-  }
-}
-layer {
-  name: "conv5-4/dwise/shift-relu"
-  type: "ReLU6"
-  bottom: "conv5-4/dwise/shift"
-  top: "conv5-4/dwise/shift"
-}
-layer {
-  name: "conv5-4/dwise/shift-div"
-  type: "Power"
-  bottom: "conv5-4/dwise/shift"
-  top: "conv5-4/dwise/shift-div"
-  power_param {
-    power: 1
-    scale: 0.1666666667
-    shift: 0
-  }
-}
-layer {
-  name: "conv5-4/dwise/hswish"
-  type: "Eltwise"
-  bottom: "conv5-4/dwise"
-  bottom: "conv5-4/dwise/shift-div"
-  top: "conv5-4/dwise/hswish"
-  eltwise_param {
-    operation: PROD
-  }
-}
 
 # se
 layer {
   name: "conv5-4/dwise-se-pool"
   type: "Pooling"
-  bottom: "conv5-4/dwise/hswish"
+  bottom: "conv5-4/dwise"
   top: "conv5-4/dwise-se-pool"
   pooling_param {
     pool: AVE
@@ -2012,18 +1973,57 @@ layer {
 layer {
   name: "conv5-4/dwise/scale"
   type: "Scale"
-  bottom: "conv5-4/dwise/hswish"
+  bottom: "conv5-4/dwise"
   bottom: "conv5-4/dwise-se-fc2/shift-div"
   top: "conv5-4/dwise/scale"
   scale_param{
     axis: 0
   }
 }
+# H-swish
+layer {
+  name: "conv5-4/dwise/shift"
+  type: "Power"
+  bottom: "conv5-4/dwise/scale"
+  top: "conv5-4/dwise/shift"
+  power_param {
+    power: 1
+    scale: 1
+    shift: 3
+  }
+}
+layer {
+  name: "conv5-4/dwise/shift-relu"
+  type: "ReLU6"
+  bottom: "conv5-4/dwise/shift"
+  top: "conv5-4/dwise/shift"
+}
+layer {
+  name: "conv5-4/dwise/shift-div"
+  type: "Power"
+  bottom: "conv5-4/dwise/shift"
+  top: "conv5-4/dwise/shift-div"
+  power_param {
+    power: 1
+    scale: 0.1666666667
+    shift: 0
+  }
+}
+layer {
+  name: "conv5-4/dwise/hswish"
+  type: "Eltwise"
+  bottom: "conv5-4/dwise/scale"
+  bottom: "conv5-4/dwise/shift-div"
+  top: "conv5-4/dwise/hswish"
+  eltwise_param {
+    operation: PROD
+  }
+}
 
 layer {
   name: "conv5-4/linear"
   type: "Convolution"
-  bottom: "conv5-4/dwise/scale"
+  bottom: "conv5-4/dwise/hswish"
   top: "conv5-4/linear"
   param {
     lr_mult: 1
@@ -2178,51 +2178,12 @@ layer {
     bias_term: true
   }
 }
-# H-swish
-layer {
-  name: "conv5-5/dwise/shift"
-  type: "Power"
-  bottom: "conv5-5/dwise"
-  top: "conv5-5/dwise/shift"
-  power_param {
-    power: 1
-    scale: 1
-    shift: 3
-  }
-}
-layer {
-  name: "conv5-5/dwise/shift-relu"
-  type: "ReLU6"
-  bottom: "conv5-5/dwise/shift"
-  top: "conv5-5/dwise/shift"
-}
-layer {
-  name: "conv5-5/dwise/shift-div"
-  type: "Power"
-  bottom: "conv5-5/dwise/shift"
-  top: "conv5-5/dwise/shift-div"
-  power_param {
-    power: 1
-    scale: 0.1666666667
-    shift: 0
-  }
-}
-layer {
-  name: "conv5-5/dwise/hswish"
-  type: "Eltwise"
-  bottom: "conv5-5/dwise"
-  bottom: "conv5-5/dwise/shift-div"
-  top: "conv5-5/dwise/hswish"
-  eltwise_param {
-    operation: PROD
-  }
-}
 
 # se
 layer {
   name: "conv5-5/dwise-se-pool"
   type: "Pooling"
-  bottom: "conv5-5/dwise/hswish"
+  bottom: "conv5-5/dwise"
   top: "conv5-5/dwise-se-pool"
   pooling_param {
     pool: AVE
@@ -2315,18 +2276,57 @@ layer {
 layer {
   name: "conv5-5/dwise/scale"
   type: "Scale"
-  bottom: "conv5-5/dwise/hswish"
+  bottom: "conv5-5/dwise"
   bottom: "conv5-5/dwise-se-fc2/shift-div"
   top: "conv5-5/dwise/scale"
   scale_param{
     axis: 0
   }
 }
+# H-swish
+layer {
+  name: "conv5-5/dwise/shift"
+  type: "Power"
+  bottom: "conv5-5/dwise/scale"
+  top: "conv5-5/dwise/shift"
+  power_param {
+    power: 1
+    scale: 1
+    shift: 3
+  }
+}
+layer {
+  name: "conv5-5/dwise/shift-relu"
+  type: "ReLU6"
+  bottom: "conv5-5/dwise/shift"
+  top: "conv5-5/dwise/shift"
+}
+layer {
+  name: "conv5-5/dwise/shift-div"
+  type: "Power"
+  bottom: "conv5-5/dwise/shift"
+  top: "conv5-5/dwise/shift-div"
+  power_param {
+    power: 1
+    scale: 0.1666666667
+    shift: 0
+  }
+}
+layer {
+  name: "conv5-5/dwise/hswish"
+  type: "Eltwise"
+  bottom: "conv5-5/dwise/scale"
+  bottom: "conv5-5/dwise/shift-div"
+  top: "conv5-5/dwise/hswish"
+  eltwise_param {
+    operation: PROD
+  }
+}
 
 layer {
   name: "conv5-5/linear"
   type: "Convolution"
-  bottom: "conv5-5/dwise/scale"
+  bottom: "conv5-5/dwise/hswish"
   top: "conv5-5/linear"
   param {
     lr_mult: 1
@@ -2473,51 +2473,12 @@ layer {
     bias_term: true
   }
 }
-# H-swish
-layer {
-  name: "conv6-1/dwise/shift"
-  type: "Power"
-  bottom: "conv6-1/dwise"
-  top: "conv6-1/dwise/shift"
-  power_param {
-    power: 1
-    scale: 1
-    shift: 3
-  }
-}
-layer {
-  name: "conv6-1/dwise/shift-relu"
-  type: "ReLU6"
-  bottom: "conv6-1/dwise/shift"
-  top: "conv6-1/dwise/shift"
-}
-layer {
-  name: "conv6-1/dwise/shift-div"
-  type: "Power"
-  bottom: "conv6-1/dwise/shift"
-  top: "conv6-1/dwise/shift-div"
-  power_param {
-    power: 1
-    scale: 0.1666666667
-    shift: 0
-  }
-}
-layer {
-  name: "conv6-1/dwise/hswish"
-  type: "Eltwise"
-  bottom: "conv6-1/dwise"
-  bottom: "conv6-1/dwise/shift-div"
-  top: "conv6-1/dwise/hswish"
-  eltwise_param {
-    operation: PROD
-  }
-}
 
 # se
 layer {
   name: "conv6-1/dwise-se-pool"
   type: "Pooling"
-  bottom: "conv6-1/dwise/hswish"
+  bottom: "conv6-1/dwise"
   top: "conv6-1/dwise-se-pool"
   pooling_param {
     pool: AVE
@@ -2610,18 +2571,57 @@ layer {
 layer {
   name: "conv6-1/dwise/scale"
   type: "Scale"
-  bottom: "conv6-1/dwise/hswish"
+  bottom: "conv6-1/dwise"
   bottom: "conv6-1/dwise-se-fc2/shift-div"
   top: "conv6-1/dwise/scale"
   scale_param{
     axis: 0
   }
 }
+# H-swish
+layer {
+  name: "conv6-1/dwise/shift"
+  type: "Power"
+  bottom: "conv6-1/dwise/scale"
+  top: "conv6-1/dwise/shift"
+  power_param {
+    power: 1
+    scale: 1
+    shift: 3
+  }
+}
+layer {
+  name: "conv6-1/dwise/shift-relu"
+  type: "ReLU6"
+  bottom: "conv6-1/dwise/shift"
+  top: "conv6-1/dwise/shift"
+}
+layer {
+  name: "conv6-1/dwise/shift-div"
+  type: "Power"
+  bottom: "conv6-1/dwise/shift"
+  top: "conv6-1/dwise/shift-div"
+  power_param {
+    power: 1
+    scale: 0.1666666667
+    shift: 0
+  }
+}
+layer {
+  name: "conv6-1/dwise/hswish"
+  type: "Eltwise"
+  bottom: "conv6-1/dwise/scale"
+  bottom: "conv6-1/dwise/shift-div"
+  top: "conv6-1/dwise/hswish"
+  eltwise_param {
+    operation: PROD
+  }
+}
 
 layer {
   name: "conv6-1/linear"
   type: "Convolution"
-  bottom: "conv6-1/dwise/scale"
+  bottom: "conv6-1/dwise/hswish"
   top: "conv6-1/linear"
   param {
     lr_mult: 1
@@ -2776,51 +2776,12 @@ layer {
     bias_term: true
   }
 }
-# H-swish
-layer {
-  name: "conv6-2/dwise/shift"
-  type: "Power"
-  bottom: "conv6-2/dwise"
-  top: "conv6-2/dwise/shift"
-  power_param {
-    power: 1
-    scale: 1
-    shift: 3
-  }
-}
-layer {
-  name: "conv6-2/dwise/shift-relu"
-  type: "ReLU6"
-  bottom: "conv6-2/dwise/shift"
-  top: "conv6-2/dwise/shift"
-}
-layer {
-  name: "conv6-2/dwise/shift-div"
-  type: "Power"
-  bottom: "conv6-2/dwise/shift"
-  top: "conv6-2/dwise/shift-div"
-  power_param {
-    power: 1
-    scale: 0.1666666667
-    shift: 0
-  }
-}
-layer {
-  name: "conv6-2/dwise/hswish"
-  type: "Eltwise"
-  bottom: "conv6-2/dwise"
-  bottom: "conv6-2/dwise/shift-div"
-  top: "conv6-2/dwise/hswish"
-  eltwise_param {
-    operation: PROD
-  }
-}
 
 # se
 layer {
   name: "conv6-2/dwise-se-pool"
   type: "Pooling"
-  bottom: "conv6-2/dwise/hswish"
+  bottom: "conv6-2/dwise"
   top: "conv6-2/dwise-se-pool"
   pooling_param {
     pool: AVE
@@ -2913,18 +2874,57 @@ layer {
 layer {
   name: "conv6-2/dwise/scale"
   type: "Scale"
-  bottom: "conv6-2/dwise/hswish"
+  bottom: "conv6-2/dwise"
   bottom: "conv6-2/dwise-se-fc2/shift-div"
   top: "conv6-2/dwise/scale"
   scale_param{
     axis: 0
   }
 }
+# H-swish
+layer {
+  name: "conv6-2/dwise/shift"
+  type: "Power"
+  bottom: "conv6-2/dwise/scale"
+  top: "conv6-2/dwise/shift"
+  power_param {
+    power: 1
+    scale: 1
+    shift: 3
+  }
+}
+layer {
+  name: "conv6-2/dwise/shift-relu"
+  type: "ReLU6"
+  bottom: "conv6-2/dwise/shift"
+  top: "conv6-2/dwise/shift"
+}
+layer {
+  name: "conv6-2/dwise/shift-div"
+  type: "Power"
+  bottom: "conv6-2/dwise/shift"
+  top: "conv6-2/dwise/shift-div"
+  power_param {
+    power: 1
+    scale: 0.1666666667
+    shift: 0
+  }
+}
+layer {
+  name: "conv6-2/dwise/hswish"
+  type: "Eltwise"
+  bottom: "conv6-2/dwise/scale"
+  bottom: "conv6-2/dwise/shift-div"
+  top: "conv6-2/dwise/hswish"
+  eltwise_param {
+    operation: PROD
+  }
+}
 
 layer {
   name: "conv6-2/linear"
   type: "Convolution"
-  bottom: "conv6-2/dwise/scale"
+  bottom: "conv6-2/dwise/hswish"
   top: "conv6-2/linear"
   param {
     lr_mult: 1
@@ -3001,51 +3001,12 @@ layer {
     bias_term: true
   }
 }
-# H-swish
-layer {
-  name: "conv6-3/shift"
-  type: "Power"
-  bottom: "conv6-3"
-  top: "conv6-3/shift"
-  power_param {
-    power: 1
-    scale: 1
-    shift: 3
-  }
-}
-layer {
-  name: "conv6-3/shift-relu"
-  type: "ReLU6"
-  bottom: "conv6-3/shift"
-  top: "conv6-3/shift"
-}
-layer {
-  name: "conv6-3/shift-div"
-  type: "Power"
-  bottom: "conv6-3/shift"
-  top: "conv6-3/shift-div"
-  power_param {
-    power: 1
-    scale: 0.1666666667
-    shift: 0
-  }
-}
-layer {
-  name: "conv6-3/hswish"
-  type: "Eltwise"
-  bottom: "conv6-3"
-  bottom: "conv6-3/shift-div"
-  top: "conv6-3/hswish"
-  eltwise_param {
-    operation: PROD
-  }
-}
 
 # se
 layer {
   name: "conv6-3-se-pool"
   type: "Pooling"
-  bottom: "conv6-3/hswish"
+  bottom: "conv6-3"
   top: "conv6-3-se-pool"
   pooling_param {
     pool: AVE
@@ -3138,11 +3099,50 @@ layer {
 layer {
   name: "conv6-3/scale"
   type: "Scale"
-  bottom: "conv6-3/hswish"
+  bottom: "conv6-3"
   bottom: "conv6-3-se-fc2/shift-div"
   top: "conv6-3/scale"
   scale_param{
     axis: 0
+  }
+}
+# H-swish
+layer {
+  name: "conv6-3/shift"
+  type: "Power"
+  bottom: "conv6-3/scale"
+  top: "conv6-3/shift"
+  power_param {
+    power: 1
+    scale: 1
+    shift: 3
+  }
+}
+layer {
+  name: "conv6-3/shift-relu"
+  type: "ReLU6"
+  bottom: "conv6-3/shift"
+  top: "conv6-3/shift"
+}
+layer {
+  name: "conv6-3/shift-div"
+  type: "Power"
+  bottom: "conv6-3/shift"
+  top: "conv6-3/shift-div"
+  power_param {
+    power: 1
+    scale: 0.1666666667
+    shift: 0
+  }
+}
+layer {
+  name: "conv6-3/hswish"
+  type: "Eltwise"
+  bottom: "conv6-3/scale"
+  bottom: "conv6-3/shift-div"
+  top: "conv6-3/hswish"
+  eltwise_param {
+    operation: PROD
   }
 }
 
@@ -3150,7 +3150,7 @@ layer {
 layer {
   name: "pool7-1"
   type: "Pooling"
-  bottom: "conv6-3/scale"
+  bottom: "conv6-3/hswish"
   top: "pool7-1"
   pooling_param {
     pool: AVE
